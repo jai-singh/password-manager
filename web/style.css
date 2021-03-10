@@ -1,0 +1,230 @@
+body{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-image: url('img/bg.jpg');
+}
+#crbox{
+  display: none;
+}
+#lbox,#crbox{
+  width: 300px;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: rgba(0,0,0,0.65);
+  border-radius: 64px;
+  text-align: center;
+}
+
+#lbox h1,#crbox h1{
+  color: #bd0ea1;
+}
+
+#user1,#pass1,#user2,#pass2,#repass{
+  border:0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #3498db;
+  padding: 14px 10px;
+  width: 200px;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+}
+
+#user1:hover,#pass1:hover,#user2:hover,#pass2:hover,#repass:hover{
+  width: 280px;
+  border-color: #2ecc71;
+}
+
+.login,.create{
+  border:0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #3498db;
+  padding: 14px 10px;
+  width: 200px;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+}
+.login:hover,.create:hover{
+  background: #2ecc71;
+}
+#message1,#message2{
+  display:none;
+  width: 300px;
+  padding: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: rgba(0,0,0,0.65);
+  border-radius: 64px;
+  text-align: center;
+}
+
+#message1 h1,#message2 h1{
+  color: #bd0ea1;
+}
+
+#message1 h2,#message2 h2{
+  color: white;
+}
+
+#error1,#error2,#error3{
+  color: red;
+}
+.default{
+  width: 300px;
+  padding: 40px;
+  margin: 10px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,4%);
+  background: rgba(0,0,0,0.65);
+  border-radius: 64px;
+  text-align: center;
+  color: #bd0ea1;
+  font-size: 18px;
+}
+.textbox{
+  border:0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #3498db;
+  padding: 14px 10px;
+  width: 200px;
+  color: white;
+  border-radius: 24px;
+  font-size: 16px;
+}
+.dbutton,.baddnew{
+  border:0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #3498db;
+  padding: 14px 10px;
+  width: 200px;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+  font-size: 16px;
+}
+.dbutton:hover,.baddnew:hover{
+  background: #2ecc71;
+}
+.addbutton{
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  text-align: center;
+  background: rgba(0,0,0,0.65);
+  color: white;
+  border: 0px;
+  width: 40px;
+  height: 40px;
+  font-size: 30px;
+  border-radius: 100%;
+}
+.addbutton:hover{
+  background: red;
+}
+.textbox:hover{
+  width: 280px;
+  border-color: #2ecc71;
+}
+#addnew,#generatepwd,#edit,#generatepwd1{
+  width: 300px;
+  padding: 40px;
+  margin: 10px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,10%);
+  background: rgba(0,0,0,0.65);
+  border-radius: 64px;
+  text-align: center;
+  color: #bd0ea1;
+  font-size: 18px;
+  display: none;
+}
+
+/*checkbox custom*/
+/* The container for checkbox*/
+.container {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a violet background */
+.container input:checked ~ .checkmark {
+  background-color: #bd0ea1;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}

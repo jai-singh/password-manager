@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>One Password to rule them all</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="/eel.js"></script>
+    <script type="text/javascript" src="scripts/login.js"></script>
+  </head>
+
+
+  <body>
+
+    <form id="lbox" >
+      <h1>Password Manager</h1>
+      <h2 id="error1"></h2>
+      <input type="text" id="user1" placeholder="Username">
+      <input type="password" id="pass1" placeholder="Password">
+      <input type="button" class="login" value="Login" onclick="submitDetails()">
+      <input type="button" class="create" value="Create Account" onclick="show(0)">
+    </form>
+
+    <form id="crbox" >
+      <h1>Password Manager</h1>
+      <h2 id="error2"></h2>
+      <input type="text" id="user2" placeholder="Username">
+      <input type="password" id="pass2" placeholder="Password">
+      <input type="password" id="repass" placeholder="Retype Password">
+      <input type="button" class="create" value="Create" onclick="createAccount()">
+      <input type="button" class="login" value="Login to a account" onclick="show(1)">
+    </form>
+    <div id="message1">
+      <h1>Password Manager</h1>
+      <h2 id="msg1"></h2>
+      <input type="button" class="create" value="Try Again" onclick="show(1)">
+    </div>
+    <div id="message2">
+      <h1>Password Manager</h1>
+      <h2 id="msg2"></h2>
+      <input type="button" class="login" value="Try Again" onclick="show(0)">
+    </div>
+
+  </body>
+</html>

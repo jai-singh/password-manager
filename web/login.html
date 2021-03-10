@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>One Password to rule them all</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="/eel.js"></script>
+    <script type="text/javascript" src="scripts/read.js"></script>
+  </head>
+  <body >
+    <div id='bd'></div>
+    <div id="addnew">
+      <h1>Add new details</h1>
+      <h2 id="error2"></h2>
+      <input type="text" class="textbox" id="addsitename" placeholder="Sitename">
+      <input type="text" class="textbox" id="addloginid" placeholder="Login Id">
+      <input type="text" class="textbox" id="addpassword" placeholder="Password">
+      <input type="button" class="baddnew"  onclick="show(4)" value="Generate Password">
+      <input type="button" class="baddnew"  onclick="addnew()" value="Submit">
+      <input type="button" class="baddnew"  onclick="show(1)" value="Cancel">
+    </div>
+    <div id="generatepwd">
+      <h1>Generate Password</h1>
+      <h2 id="error1"></h2>
+      <input type="number" class="textbox" id="size" placeholder="Size of the password">
+      <label class="container">Password containing letters
+      <input type="checkbox" class="check" id="checkbox1" value="1">
+      <span class="checkmark"></span>
+      </label>
+      <label class="container">Password containing numbers
+      <input type="checkbox" class="check" id="checkbox2" value="2">
+      <span class="checkmark"></span>
+      </label>
+      <label class="container">Password containing special characters
+      <input type="checkbox" class="check" id="checkbox3" value="4">
+      <span class="checkmark"></span>
+      </label>
+      <input type="button" class="baddnew" onclick="generatepwd()" value="Generate Password">
+      <input type="textbox" class="textbox" id="gepwd" placeholder="Generated Password" disabled>
+      <input type="button" class="baddnew" onclick="subm()" value="Submit">
+    </div>
+    <div id="edit">
+      <h1>Edit details</h1>
+      <h2 id="error3"></h2>
+      <input type="text" class="textbox" id="editsitename" placeholder="Sitename">
+      <input type="text" class="textbox" id="editloginid" placeholder="Login Id">
+      <input type="text" class="textbox" id="editpassword" placeholder="Password">
+      <input type="button" class="baddnew"  onclick="show(2)" value="Generate Password">
+      <input type="button" class="baddnew"  onclick="modify()" value="Submit">
+      <input type="button" class="baddnew"  onclick="show(1)" value="Cancel">
+    </div>
+    <div id="generatepwd1">
+      <h1>Generate Password</h1>
+      <h2 id="error1"></h2>
+      <input type="number" class="textbox" id="size1" placeholder="Size of the password">
+      <label class="container">Password containing letters
+      <input type="checkbox" class="check" id="checkbox11">
+      <span class="checkmark"></span>
+      </label>
+      <label class="container">Password containing numbers
+      <input type="checkbox" class="check" id="checkbox21">
+      <span class="checkmark"></span>
+      </label>
+      <label class="container">Password containing special characters
+      <input type="checkbox" class="check" id="checkbox31">
+      <span class="checkmark"></span>
+      </label>
+      <input type="button" class="baddnew" onclick="generatepwd1()" value="Generate Password">
+      <input type="textbox" class="textbox" id="gepwd1" placeholder="Generated Password" disabled>
+      <input type="button" class="baddnew" onclick="subm1()" value="Submit">
+    </div>
+    <input type="button" class="addbutton" onclick="show(0)" value="+">
+  </body>
+
+</html>
