@@ -78,13 +78,15 @@ def login(username,password):
 				decryptdict[0]['size']=tno
 				for i in range(1,tno+1):
 					decryptdict[str(i)]={}
-					decryptdict[str(i)]['sitename']=sdata[username][str(i)]['sitename']
-					decryptdict[str(i)]['loginid']=sdata[username][str(i)]['loginid']
-					eText=sdata[username][str(i)]['password']
-					decryptdict[str(i)]['password']=obj.dec(eText)
+					esitename=sdata[username][str(i)]['sitename']
+					eloginid=sdata[username][str(i)]['loginid']
+					epassword=sdata[username][str(i)]['password']
+					decryptdict[str(i)]['sitename']=obj.dec(esitename)
+					decryptdict[str(i)]['loginid']=obj.dec(eloginid)					
+					decryptdict[str(i)]['password']=obj.dec(epassword)
 
-				#encrypting password and username with random text and storing it in text
-				#the random text is returned to the javascript
+				#encrypting password and username with random text and storing in json file and sending the 
+				#random text for future verification
 				with open("temp.json","w") as file:
 					file.truncate(0)
 					file.seek(0)
@@ -100,7 +102,6 @@ def login(username,password):
 				with open("web/dstore.json","w+") as file:
 					file.truncate(0)
 					file.seek(0)
-					#print(decryptdict)
 					json.dump(decryptdict,file)
 
 			return("success",sid)
@@ -129,9 +130,11 @@ def addvalue(sid,sitename,loginid,pwd,flag,position=-1):
 			return("Your sid is wrong please reopen app and relogin it")
 	
 	if(flag == 0):
-		obj2 = encryptionDecryption.encryptdecrypt(password)
+		obj2 = encryptionDecryption.encryptdecrypt(password)		
+		esitename = obj2.enc(sitename)
+		eloginid = obj2.enc(loginid)
 		epwd = obj2.enc(pwd)
-		ndata = {'sitename':sitename,'loginid':loginid,"password":epwd}
+		ndata = {'sitename':esitename,'loginid':eloginid,"password":epwd}
 		with open("storage.json","r+") as file:
 			sdata = json.load(file)
 			size = len(sdata[username])
@@ -145,11 +148,13 @@ def addvalue(sid,sitename,loginid,pwd,flag,position=-1):
 	elif(flag==1):
 		position = int(position)
 		obj2 = encryptionDecryption.encryptdecrypt(password)
+		esitename = obj2.enc(sitename)
+		eloginid = obj2.enc(loginid)
 		epwd = obj2.enc(pwd)
 		with open("storage.json","r+") as file:
 			sdata = json.load(file)
-			sdata[username][str(position)]['sitename']=sitename
-			sdata[username][str(position)]['loginid']=loginid
+			sdata[username][str(position)]['sitename']=esitename
+			sdata[username][str(position)]['loginid']=eloginid
 			sdata[username][str(position)]['password']=epwd
 			file.seek(0)
 			file.truncate(0)
