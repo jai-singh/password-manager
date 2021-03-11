@@ -181,6 +181,6 @@ eel.start(
 	'main.html', 
 	size=(700,666),
 	mode='chrome',
-	cmdline_args=['-kiosk' ,'--disable-extensions', '--disable-plugins', '--fast','--fast-start'] #this arguments are for chrome and 
+	cmdline_args=['--disable-extensions', '--disable-plugins', '--fast','--fast-start'] #this arguments are for chrome and 
 )																																											#won't work if there is another instance 
 																																									  	#of it running on the machine

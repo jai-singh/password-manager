@@ -1,4 +1,4 @@
-const xhttp = new XMLHttpRequest();
+const xhttp = new XMLHttpRequest()
 xhttp.onreadystatechange = function() {
      if (this.readyState == 4 && this.status == 200) {
        const rawData=xhttp.responseText
@@ -9,14 +9,15 @@ xhttp.onreadystatechange = function() {
 xhttp.open("GET","dstore.json",true)
 xhttp.send()
 
+let isAddDialogBox = false 
 
 function generateWebPage(data){
   let output = ""
   //stop the operation of creating form if no data is stored
 
-  let size = data[0][0]['size'];
+  let size = data[0][0]['size']
   //form will be created here
-  for(let i = 0;i< data[0][0]['size'];i++)
+  for(let i = 0; i < data[0][0]['size']; i++)
   {
     let inputs='<input type="text" id="sitename'+i+'" class="textbox" disabled>'
     let inputl='<input type="text" id="loginid'+i+'" class="textbox" disabled>'
@@ -27,7 +28,7 @@ function generateWebPage(data){
   }
   document.getElementById('bd').innerHTML=output
   //values will be inserted in this loop
-  for(i = 0; i< data[0][0]['size'];i++)
+  for(i = 0; i< data[0][0]['size']; i++)
   {
     let j=i+1
     let v = data[0][j]
@@ -47,19 +48,18 @@ function setSize(s){
   return
 }
 
-//function to show different div
-function show(a)
+//function to show different layouts
+function show(a, addDialogBox = false)
 {
-  if(a==0) { //showing only addnew div
-    view("none","block","none","none","none")
-  } else if(a==1) {     //showing only body div
-    view("block","none","none","none","none")
-  } else if(a==2) {     //showing only generatepwd div      
-    view("none","none","block","none","none")
-  } else if(a==3) {     //showing only edit old value
-    view("none","none","none","block","none")
-  } else if(a==4) {
-    view("none","none","none","none","block")
+  if(a==0) { 
+    view("none","block","none","none","none") //showing only addnew div
+  } else if(a==1) {     
+    view("block","none","none","none","none") //showing only body div
+  } else if(a==2) {          
+    isAddDialogBox = (addDialogBox) ? true : false
+    view("none","none","block","none","none") //showing only generatepwd div     
+  } else if(a==3) {     
+    view("none","none","none","block","none") //showing only edit old value
   }
 }
 
@@ -68,8 +68,8 @@ function view(a, b, c, d, e) {
   document.getElementById("addnew").style.display = b //x
   document.getElementById("generatepwd").style.display = c //z
   document.getElementById("edit").style.display = d //r
-  document.getElementById("generatepwd1").style.display = e //p
 }
+
 //function generating new password for edit
 function generatepwd(){
   s=document.getElementById('size').value
@@ -93,48 +93,17 @@ function generatepwd(){
     if(c3.checked==true){
       value=value+4
     }
-    eel.gen(s,value)(function(ret){pwdfield.value=ret})
+    eel.gen(s,value)(function(ret){
+      pwdfield.value=ret
+    })
   }
 }
 //function copying password from generatepwd to edit div
 function subm() {
-  const pwdfield=document.getElementById('gepwd')
-  const fill=document.getElementById('editpassword')
-  fill.value=pwdfield.value
-  show(3)
-}
-//function generating password for addnew
-function generatepwd1(){
-  s=document.getElementById('size1').value
-  c1=document.getElementById('checkbox11')
-  c2=document.getElementById('checkbox21')
-  c3=document.getElementById('checkbox31')
-  pwdfield=document.getElementById('gepwd1')
-  if(s=='' || (c1.checked==false && c2.checked==false && c3.checked==false)){
-    const er = document.querySelector("#error1")
-    er.innerHTML = "Please select any option and also please enter size"
-    setTimeout(() => er.innerHTML="" ,3500)
-  }
-  else{
-    let value=0
-    if(c1.checked==true){
-      value=value+1
-    }
-    if(c2.checked==true){
-      value=value+2
-    }
-    if(c3.checked==true){
-      value=value+4
-    }
-    eel.gen(s,value)(function(ret){pwdfield.value=ret})
-  }
-}
-//function copying password from generatepwd to edit div
-function subm1(){
-  const pwdfield=document.getElementById('gepwd1')
-  const fill=document.getElementById('addpassword')
-  fill.value=pwdfield.value
-  show(0)
+  const pwdField = document.getElementById('gepwd')
+  const fill = (isAddDialogBox) ? document.getElementById('addpassword') : document.getElementById('editpassword')
+  fill.value = pwdField.value;
+  (isAddDialogBox) ? show(0) : show(3)
 }
 
 //function sending new details to python script
@@ -160,7 +129,6 @@ function addnew() {
 function disp(msg){
   if(msg=="success"){
     const site=document.getElementById('addsitename')
-    console.log(site.value);
     const loginid=document.getElementById('addloginid')
     const pwd=document.getElementById('addpassword')
     let output = ""
@@ -215,19 +183,16 @@ function modify(){
     const er = document.querySelector("#error3")
     er.innerHTML = "Please enter data in all fields"
     setTimeout(() => er.innerHTML="" ,3500)
-  }
-
-  else{
+  } else {
     ssid=JSON.parse(window.sessionStorage.getItem('details'))
     sid = ssid['ssid']
     eel.addvalue(sid,site.value,loginid.value,pwd.value,1,pos)(disp1)
-    }    
+  }    
 }
 
 //this function updates newly modified details in ui
 function disp1(msg) {
-  if(msg=="success"){
-    show(1)
+  if(msg=="success") {    
     const site=document.getElementById('editsitename')
     const loginid=document.getElementById('editloginid')
     const pwd=document.getElementById('editpassword')
@@ -235,8 +200,8 @@ function disp1(msg) {
     document.getElementById('sitename'+i).value=site.value
     document.getElementById('loginid'+i).value=loginid.value
     document.getElementById('password'+i).value=pwd.value
-  }
-  else{
+    show(1)
+  } else {
     //console.log(msg)
     const er = document.querySelector("#error3")
     er.innerHTML = msg
