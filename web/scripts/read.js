@@ -50,50 +50,25 @@ function setSize(s){
 //function to show different div
 function show(a)
 {
-  const x = document.getElementById("addnew")
-  const y = document.getElementById("bd")
-  const z = document.getElementById("generatepwd")
-  const r = document.getElementById("edit")
-  const p = document.getElementById("generatepwd1")
-  //showing only addnew div
-  if(a==0){
-      y.style.display="none"
-      x.style.display="block"
-      z.style.display="none"
-      r.style.display="none"
-      p.style.display="none"
+  if(a==0) { //showing only addnew div
+    view("none","block","none","none","none")
+  } else if(a==1) {     //showing only body div
+    view("block","none","none","none","none")
+  } else if(a==2) {     //showing only generatepwd div      
+    view("none","none","block","none","none")
+  } else if(a==3) {     //showing only edit old value
+    view("none","none","none","block","none")
+  } else if(a==4) {
+    view("none","none","none","none","block")
   }
-  //showing only body div
-  else if(a==1){
-      y.style.display="block"
-      x.style.display="none"
-      z.style.display="none"
-      r.style.display="none"
-      p.style.display="none"
-  }
-  //showing only generatepwd div
-  else if(a==2){
-    y.style.display="none"
-    x.style.display="none"
-    z.style.display="block"
-    r.style.display="none"
-    p.style.display="none"
-  }
-  //showing only edit old value
-  else if(a==3){
-    y.style.display="none"
-    x.style.display="none"
-    z.style.display="none"
-    r.style.display="block"
-    p.style.display="none"
-  }
-  else if(a==4){
-    y.style.display="none"
-    x.style.display="none"
-    z.style.display="none"
-    r.style.display="none"
-    p.style.display="block"
-  }
+}
+
+function view(a, b, c, d, e) {
+  document.getElementById("bd").style.display = a //y
+  document.getElementById("addnew").style.display = b //x
+  document.getElementById("generatepwd").style.display = c //z
+  document.getElementById("edit").style.display = d //r
+  document.getElementById("generatepwd1").style.display = e //p
 }
 //function generating new password for edit
 function generatepwd(){
@@ -174,7 +149,7 @@ function addnew() {
       setTimeout(() => er.innerHTML="" ,3500)
     }
 
-    else{
+    else{      
       ssid=JSON.parse(window.sessionStorage.getItem('details'))
       sid = ssid['ssid']
       eel.addvalue(sid,site.value,loginid.value,pwd.value,0,-1)(disp)
